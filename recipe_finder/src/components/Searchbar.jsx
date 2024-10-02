@@ -2,30 +2,11 @@ import { Box, IconButton, InputAdornment, TextField } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import text from "../constants/text";
-import { GoogleGenerativeAI } from '@google/generative-ai'
-import key from "../apiKey";
 import { useState } from "react";
 
-const genAI = new GoogleGenerativeAI(
-    key
-);
-
-const Searchbar = ({clear, setClear}) => {
+const Searchbar = ({clear, setClear, searchFunc}) => {
 
     const [input, setInput] = useState('');
-
-    const getResponseForGivenPrompt = async () => {
-        try{
-          const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-          const result = await model.generateContent(input);
-          const response = await result.response;
-          const text = await response.text();
-          console.log(text);
-        }
-        catch(error){
-          console.log("Something Went Wrong");
-        }
-    }
 
 
     return (
@@ -35,7 +16,7 @@ const Searchbar = ({clear, setClear}) => {
                     input: {
                         endAdornment: clear  ?
                             <InputAdornment position="end">
-                                <IconButton onClick={() => {setClear(false); getResponseForGivenPrompt();}}>
+                                <IconButton onClick={() => {setClear(false); searchFunc(input);}}>
                                     <SearchIcon />
                                 </IconButton>
                             </InputAdornment>
@@ -51,7 +32,7 @@ const Searchbar = ({clear, setClear}) => {
             value={input}
             placeholder={text.placeholder}
             variant="outlined"
-            onChange={(e) => {setInput(e.target.value)}}
+            onChange={(e) => {setClear(true); setInput(e.target.value)}}
         /> 
         </Box>
     );
