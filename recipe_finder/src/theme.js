@@ -9,18 +9,17 @@ const theme = createTheme(
                 main: colors.background,
             }
         },
-        typography: {
-            fontFamily: 'Outfit',
-        },
         components: {
             MuiContainer: {
                 styleOverrides: {
                     root:{
                         height:'100vh',
-                        width: 'auto',
+                        width: 'max-width',
                         backgroundColor: colors.background,
                         display: 'flex',
-                        justifyContent: 'center',
+                        flexDirection: 'column',
+                        justifyContent: 'flex-start',
+                        alignItems: 'center'
                     }
                 }
             },
@@ -35,8 +34,43 @@ const theme = createTheme(
                        width: '400px',
                        marginTop: 20,
                        justifyContent: 'center',
+                       outline: '0px',
+                       '& fieldset': { border: 'none' }
                     }
                 }
+            },
+            MuiCard: {
+                styleOverrides: {
+                    root:{
+                       backgroundColor: colors.searchBackground,
+                       borderRadius: '8px',
+                       height: '88px',
+                       width: '384px',
+                       display: 'grid',
+                       gridTemplateColumns: '20% 65% 15%',
+                    }
+                }
+            },
+            MuiCardContent: {
+                styleOverrides: {
+                    root:{
+                      padding: '5px'
+                    }
+                } 
+            },
+            MuiButton: {
+                styleOverrides: {
+                    root:{
+                      margin: '16px 32px',
+                      width: '180px',
+                      height:'48px',
+                      backgroundColor: colors.fav,
+                      color: colors.background,
+                      alignSelf: 'center',
+                      borderRadius: '8px',
+                      textTransform: 'none'
+                    }
+                } 
             }
         }
     }
