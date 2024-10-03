@@ -14,7 +14,8 @@ const theme = createTheme(
                 styleOverrides: {
                     root:{
                         height:'100%',
-                        width: '100vmax',
+                        minHeight:'100vh',
+                        width: '100%',
                         backgroundColor: colors.background,
                         display: 'flex',
                         flexDirection: 'column',

@@ -49,12 +49,12 @@ const Home = () => {
     }
 
     return (
-        <Container component="div">
+        <Container component="div" maxWidth='xl'>
             <Searchbar clear={clear} setClear={setClear} cards={cards} setCards={setCards} searchFunc={getResponseForGivenPrompt} setSearch={setSearch}/>
             <Box sx={{padding: '10vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start'}}>
                 {
                     loading ? 
-                    <Skeleton variant='rectangular' animation='wave' width='40rem' height='20rem'/> 
+                    <Skeleton variant='rectangular' animation='wave' width='40vw' height='20vh'/> 
                     :
                     <Typography sx={{fontSize: '32px', fontWeight: '700', marginBottom: '10px'}}>
                         {!search ? text.favs : text.suggestions}
