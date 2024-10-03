@@ -2,8 +2,10 @@ import { Card, CardActions, CardContent, CardMedia, IconButton, Typography } fro
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import colors from "../constants/colors";
+import { useState } from "react";
 
-const RecipeCard = ({card, favorite, addToFavs}) => {
+const RecipeCard = ({card, addToFavs}) => {
+    const [favorite, setFavorite] = useState(false);
     return (
         <Card onClick={() => console.log(card.ingredients)}>
             <CardMedia image=""/>
@@ -18,11 +20,11 @@ const RecipeCard = ({card, favorite, addToFavs}) => {
             <CardActions>
                 {
                     favorite ?
-                    <IconButton>
+                    <IconButton onClick={() => {addToFavs(card); setFavorite(false)}}>
                         <FavoriteIcon sx={{color: colors.fav}}/>
                     </IconButton>
                     :
-                    <IconButton onClick={addToFavs(card)}>
+                    <IconButton onClick={() => {addToFavs(card); setFavorite(true)}}>
                         <FavoriteBorderIcon/>
                     </IconButton>
                 }

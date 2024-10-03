@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Typography, Box, Button } from "@mui/material";
+import { Container, Typography, Box, Button, Skeleton } from "@mui/material";
 import Searchbar from "../components/Searchbar";
 import text from "../constants/text";
 import RecipeCard from "../components/RecipeCard";
@@ -25,9 +25,7 @@ const Home = () => {
             const result = await model.generateContent(input);
             const response = result.response;
             const text = response.text();
-            console.log(text);
             const splitText = text.substring(text.indexOf('[')-1, text.lastIndexOf(']')+1);
-            console.log(splitText);
             const parsedData = JSON.parse(splitText);
             if(Array.isArray(parsedData)){
                 setCards(parsedData);
@@ -41,7 +39,13 @@ const Home = () => {
     }
 
     const addToFavs = (fav) => {
-        setFavs([...favs, fav]);
+        if(!favs.includes(fav, 0)){
+            setFavs([...favs, fav]);
+        }
+        else{
+            let favsFiltered = favs.filter((recipe) => {return recipe !== fav});
+            setFavs(favsFiltered);
+        }
     }
 
     return (
@@ -49,21 +53,23 @@ const Home = () => {
             <Searchbar clear={clear} setClear={setClear} cards={cards} setCards={setCards} searchFunc={getResponseForGivenPrompt} setSearch={setSearch}/>
             <Box sx={{padding: '10vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start'}}>
                 {
-                    loading ? null :
-                <Typography sx={{fontSize: '32px', fontWeight: '700', marginBottom: '10px'}}>
-                    {!search ? text.favs : text.suggestions}
-                </Typography>
+                    loading ? 
+                    <Skeleton variant='rectangular' animation='wave' width='40rem' height='20rem'/> 
+                    :
+                    <Typography sx={{fontSize: '32px', fontWeight: '700', marginBottom: '10px'}}>
+                        {!search ? text.favs : text.suggestions}
+                    </Typography>
                 }
                 {
                     loading ?
-                    null :
+                    <Skeleton variant='rectangular' animation='wave'/> :
                     (search ?
                         cards.map((card) => (
-                            <RecipeCard card={card} favorite={false} addToFavs={addToFavs}/>
+                            <RecipeCard card={card} addToFavs={addToFavs}/>
                         ))
                         :
                         favs.map((fav) =>(
-                            <RecipeCard card={fav} favorite={true} addToFavs={addToFavs}/>
+                            <RecipeCard card={fav} addToFavs={addToFavs}/>
                     )))
                 }
                 {

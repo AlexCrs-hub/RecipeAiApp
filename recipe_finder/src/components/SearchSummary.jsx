@@ -15,7 +15,6 @@ const SearchSummary = ({card}) => {
             <IconButton>
                 <FavoriteBorderIcon/>
             </IconButton>
-           
         </Box>
     );
 }

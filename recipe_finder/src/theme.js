@@ -13,8 +13,8 @@ const theme = createTheme(
             MuiContainer: {
                 styleOverrides: {
                     root:{
-                        height:'auto',
-                        width: 'max-width',
+                        height:'100%',
+                        width: '100vmax',
                         backgroundColor: colors.background,
                         display: 'flex',
                         flexDirection: 'column',
