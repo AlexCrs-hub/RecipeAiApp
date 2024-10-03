@@ -1,26 +1,30 @@
-import { Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
+import { Card, CardActions, CardContent, CardMedia, IconButton, Typography } from "@mui/material";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import colors from "../constants/colors";
 
-const RecipeCard = ({title, time, favorite}) => {
+const RecipeCard = ({card, favorite, addToFavs}) => {
     return (
-        <Card>
+        <Card onClick={() => console.log(card.ingredients)}>
             <CardMedia image=""/>
             <CardContent>
                 <Typography sx={{fontWeight: '600', fontSize: '16px'}}>
-                    {title}
+                    {card.title}
                 </Typography>
                 <Typography sx={{fontSize: '14px'}}>
-                    {time}
+                    {card.time}
                 </Typography>
             </CardContent>
             <CardActions>
                 {
                     favorite ?
-                    <FavoriteIcon sx={{color: colors.fav}}/>
+                    <IconButton>
+                        <FavoriteIcon sx={{color: colors.fav}}/>
+                    </IconButton>
                     :
-                    <FavoriteBorderIcon/>
+                    <IconButton onClick={addToFavs(card)}>
+                        <FavoriteBorderIcon/>
+                    </IconButton>
                 }
             </CardActions>
         </Card>

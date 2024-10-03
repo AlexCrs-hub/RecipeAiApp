@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import text from "../constants/text";
 import { useState } from "react";
 
-const Searchbar = ({clear, setClear, searchFunc}) => {
+const Searchbar = ({clear, setClear, searchFunc, cards, setCards, setSearch}) => {
 
     const [input, setInput] = useState('');
 
@@ -16,13 +16,13 @@ const Searchbar = ({clear, setClear, searchFunc}) => {
                     input: {
                         endAdornment: clear  ?
                             <InputAdornment position="end">
-                                <IconButton onClick={() => {setClear(false); searchFunc(input);}}>
+                                <IconButton onClick={() => {setSearch(true); setClear(false); searchFunc(input + "as a list using this JSON schema: Recipe = {'title' : string, 'time': string, 'ingredients': string, 'instructions': string}", setCards, cards);}}>
                                     <SearchIcon />
                                 </IconButton>
                             </InputAdornment>
                             :
                             <InputAdornment  position="end">
-                                <IconButton onClick={() => {setClear(true); setInput('');}}>
+                                <IconButton onClick={() => {setSearch(false); setInput('');}}>
                                     <CloseIcon />
                                 </IconButton>
                             </InputAdornment>

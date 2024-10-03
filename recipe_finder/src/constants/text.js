@@ -3,7 +3,7 @@ const text = {
     favs: 'Favorites',
     suggestions: 'Suggested recipes',
     dontLike: 'I don\'t like these',
-    others: "Give me other recipes"
+    others: "Give me other recipes in the same form"
 }
 
 export default text;

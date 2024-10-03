@@ -13,7 +13,7 @@ const theme = createTheme(
             MuiContainer: {
                 styleOverrides: {
                     root:{
-                        height:'100vh',
+                        height:'auto',
                         width: 'max-width',
                         backgroundColor: colors.background,
                         display: 'flex',
@@ -48,6 +48,7 @@ const theme = createTheme(
                        width: '384px',
                        display: 'grid',
                        gridTemplateColumns: '20% 65% 15%',
+                       margin: '15px'
                     }
                 }
             },

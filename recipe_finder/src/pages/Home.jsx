@@ -10,35 +10,64 @@ const genAI = new GoogleGenerativeAI(
     key
 );
 
-const getResponseForGivenPrompt = async (input) => {
-    try{
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-      const result = await model.generateContent(input);
-      const response = await result.response;
-      const text = await response.text();
-      console.log(text);
-    }
-    catch(error){
-      console.log("Something Went Wrong");
-    }
-}
-
 const Home = () => {
 
     const [clear, setClear] = useState(true);
     const [cards, setCards] = useState([]);
-    const [search, setSearch] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [search, setSearch] = useState(false);
+    const [favs, setFavs] = useState([]);
+
+    const getResponseForGivenPrompt = async (input, setCards) => {
+        try{
+            setLoading(true);
+            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+            const result = await model.generateContent(input);
+            const response = result.response;
+            const text = response.text();
+            console.log(text);
+            const splitText = text.substring(text.indexOf('[')-1, text.lastIndexOf(']')+1);
+            console.log(splitText);
+            const parsedData = JSON.parse(splitText);
+            if(Array.isArray(parsedData)){
+                setCards(parsedData);
+            }
+            setLoading(false);
+        }
+        catch(error){
+            console.log(error);
+            setLoading(false);
+        }
+    }
+
+    const addToFavs = (fav) => {
+        setFavs([...favs, fav]);
+    }
 
     return (
         <Container component="div">
-            <Searchbar clear={clear} setClear={setClear} searchFunc={getResponseForGivenPrompt}/>
+            <Searchbar clear={clear} setClear={setClear} cards={cards} setCards={setCards} searchFunc={getResponseForGivenPrompt} setSearch={setSearch}/>
             <Box sx={{padding: '10vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start'}}>
-                <Typography sx={{fontSize: '32px', fontWeight: '700', marginBottom: '10px'}}>
-                    {clear ? text.favs : text.suggestions}
-                </Typography>
-                <RecipeCard title='yes' time='20min' favorite={clear}/>
                 {
-                !clear ? 
+                    loading ? null :
+                <Typography sx={{fontSize: '32px', fontWeight: '700', marginBottom: '10px'}}>
+                    {!search ? text.favs : text.suggestions}
+                </Typography>
+                }
+                {
+                    loading ?
+                    null :
+                    (search ?
+                        cards.map((card) => (
+                            <RecipeCard card={card} favorite={false} addToFavs={addToFavs}/>
+                        ))
+                        :
+                        favs.map((fav) =>(
+                            <RecipeCard card={fav} favorite={true} addToFavs={addToFavs}/>
+                    )))
+                }
+                {
+                (search && !loading) ? 
                     <Button size='medium' onClick={() => getResponseForGivenPrompt(text.others)}>
                         {text.dontLike}
                     </Button> 
