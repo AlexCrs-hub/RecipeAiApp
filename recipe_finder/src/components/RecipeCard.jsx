@@ -2,10 +2,10 @@ import { Card, CardActions, CardContent, CardMedia, IconButton, Typography } fro
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import colors from "../constants/colors";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const RecipeCard = ({card, addToFavs}) => {
+const RecipeCard = ({card, addToFavs, favs}) => {
 
     const [favorite, setFavorite] = useState(false);
     const navigate = useNavigate();
@@ -16,9 +16,15 @@ const RecipeCard = ({card, addToFavs}) => {
 
     }
 
+    useEffect(() => {
+        if(favs.includes(card,0)){
+            setFavorite(true);
+        }
+    },[])
+
     return (
         <Card>
-            <CardMedia image=""/>
+            <CardMedia image='../undef.png'/>
             <CardContent onClick={() => goToRecipe()}>
                 <Typography sx={{fontWeight: '600', fontSize: '16px'}}>
                     {card.title}

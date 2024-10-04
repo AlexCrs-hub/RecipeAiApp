@@ -64,11 +64,11 @@ const Home = ({favs, setFavs}) => {
                     <Skeleton variant='rectangular' animation='wave'/> :
                     (search ?
                         cards.map((card) => (
-                            <RecipeCard card={card} addToFavs={addToFavs}/>
+                            <RecipeCard card={card} addToFavs={addToFavs} favs={favs}/>
                         ))
                         :
                         favs.map((fav) =>(
-                            <RecipeCard card={fav} addToFavs={addToFavs}/>
+                            <RecipeCard card={fav} addToFavs={addToFavs} favs={favs}/>
                     )))
                 }
                 {

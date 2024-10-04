@@ -1,7 +1,13 @@
 import { Box, Typography, IconButton, Container } from "@mui/material";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useState } from "react";
+import colors from "../constants/colors";
 
-const SearchSummary = ({card}) => {
+const SearchSummary = ({card, addToFavs}) => {
+
+    const [favorite, setFavorite] = useState(false);
+
     return (
         <Container component='div' sx={{display: 'grid', gridTemplateColumns:'80% 20%'}}>
             <Box component='div'>
@@ -12,9 +18,16 @@ const SearchSummary = ({card}) => {
                     {card.time}
                 </Typography>
             </Box>
-            <IconButton>
-                <FavoriteBorderIcon/>
-            </IconButton>
+            {
+                favorite ?
+                <IconButton onClick={() => {addToFavs(card); setFavorite(false)}}>
+                    <FavoriteIcon sx={{color: colors.fav}}/>
+                </IconButton>
+                :
+                <IconButton onClick={() => {addToFavs(card); setFavorite(true)}}>
+                    <FavoriteBorderIcon/>
+                </IconButton>
+            }
         </Container>
     );
 }
