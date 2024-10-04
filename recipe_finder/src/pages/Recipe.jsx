@@ -15,23 +15,25 @@ const Recipe = ({favs, setFavs}) => {
     }
 
     return (
-        <Container  sx={{display: 'grid', gridTemplateColumns: '50% 50%'}}>
-            <SearchSummary card={card} addToFavs={addToFavs}/>
-            <Container sx={{padding: theme => theme.spacing(4)}}>
-                <Box component='div' sx={{display: 'flex', flexDirection:'column', gap: theme => theme.spacing(3)}}>
-                    <Typography>
-                        {'Ingrediens:'}
-                    </Typography>
-                    <Typography>
-                        {card.ingredients}
-                    </Typography>
-                    <Typography>
-                        {'Instructions:'}
-                    </Typography>
-                    <Typography>
-                        {card.instructions}
-                    </Typography>
-                </Box>
+        <Container maxWidth='xl'>
+            <Container  sx={{display: 'flex', flexDirection: 'row', width: '864px'}} maxWidth='xl'>
+                <SearchSummary card={card} addToFavs={addToFavs}/>
+                <Container sx={{padding: theme => theme.spacing(4), width: '400px'}}>
+                    <Box component='div' sx={{display: 'flex', flexDirection:'column', gap: theme => theme.spacing(3)}}>
+                        <Typography>
+                            {'Ingrediens:'}
+                        </Typography>
+                        <Typography>
+                            {card.ingredients}
+                        </Typography>
+                        <Typography>
+                            {'Instructions:'}
+                        </Typography>   
+                        <Typography>
+                            {card.instructions}
+                        </Typography>
+                    </Box>
+                </Container>
             </Container>
         </Container>
     );

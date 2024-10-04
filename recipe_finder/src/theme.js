@@ -49,7 +49,8 @@ const theme = createTheme(
                        width: '384px',
                        display: 'grid',
                        gridTemplateColumns: '20% 65% 15%',
-                       margin: '15px'
+                       margin: '15px',
+                       boxShadow: '4px 4px 10px 0px #E1E1E190'
                     }
                 }
             },

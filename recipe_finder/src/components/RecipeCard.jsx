@@ -24,7 +24,7 @@ const RecipeCard = ({card, addToFavs, favs}) => {
 
     return (
         <Card>
-            <CardMedia image='../undef.png'/>
+            <CardMedia component='img' image='undefined.jpg'/>
             <CardContent onClick={() => goToRecipe()}>
                 <Typography sx={{fontWeight: '600', fontSize: '16px'}}>
                     {card.title}

@@ -4,6 +4,7 @@ const colors = {
     border: "#D9D9D9",
     icon: "#000000",
     fav: "#65558F",
+    shadow: '#E1E1E1E5',
 }
 
 export default colors;

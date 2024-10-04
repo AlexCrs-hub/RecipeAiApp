@@ -9,7 +9,7 @@ const SearchSummary = ({card, addToFavs}) => {
     const [favorite, setFavorite] = useState(false);
 
     return (
-        <Container component='div' sx={{display: 'grid', gridTemplateColumns:'80% 20%'}}>
+        <Container component='div' sx={{display: 'grid', gridTemplateColumns:'80% 20%', width: '400px'}}>
             <Box component='div'>
                 <Typography sx={{fontWeight: '600', fontSize: '16px'}}>
                     {card.title}
