@@ -16,7 +16,7 @@ const Searchbar = ({clear, setClear, searchFunc, cards, setCards, setSearch}) =>
                     input: {
                         endAdornment: clear  ?
                             <InputAdornment position="end">
-                                <IconButton onClick={() => {setSearch(true); setClear(false); searchFunc(input + "as a list using this JSON schema: Recipe = {'title' : string, 'time': string, 'ingredients': string, 'instructions': string}", setCards, cards);}}>
+                                <IconButton onClick={() => {setSearch(true); setClear(false); searchFunc(input + text.prompt, setCards, cards);}}>
                                     <SearchIcon />
                                 </IconButton>
                             </InputAdornment>

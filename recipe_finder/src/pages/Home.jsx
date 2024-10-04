@@ -10,13 +10,12 @@ const genAI = new GoogleGenerativeAI(
     key
 );
 
-const Home = () => {
+const Home = ({favs, setFavs}) => {
 
     const [clear, setClear] = useState(true);
     const [cards, setCards] = useState([]);
     const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState(false);
-    const [favs, setFavs] = useState([]);
 
     const getResponseForGivenPrompt = async (input, setCards) => {
         try{
@@ -74,7 +73,7 @@ const Home = () => {
                 }
                 {
                 (search && !loading) ? 
-                    <Button size='medium' onClick={() => getResponseForGivenPrompt(text.others)}>
+                    <Button size='medium' onClick={() => getResponseForGivenPrompt(text.others + text.prompt, setCards)}>
                         {text.dontLike}
                     </Button> 
                     : 

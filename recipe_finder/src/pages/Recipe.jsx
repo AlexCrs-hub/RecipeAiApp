@@ -1,14 +1,19 @@
-import { Box, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import SearchSummary from "../components/SearchSummary";
 
-const Recipe = ({card}) => {
+const Recipe = ({favs, setFavs}) => {
+    
+    const card = JSON.parse(localStorage.getItem('recipe') || '');
+
     return (
-        <Box component='div' sx={{display: 'grid', gridTemplateColumns: '50% 50%'}}>
+        <Container  sx={{display: 'grid', gridTemplateColumns: '50% 50%'}}>
             <SearchSummary card={card}/>
-            <Typography>
-                {card.ingredients + '\n' + card.instructions}
-            </Typography>
-        </Box>
+            <Container>
+                <Typography>
+                    {card.ingredients + '\n' + card.instructions}
+                </Typography>
+            </Container>
+        </Container>
     );
 }
 

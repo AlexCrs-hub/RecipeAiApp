@@ -3,13 +3,23 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import colors from "../constants/colors";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const RecipeCard = ({card, addToFavs}) => {
+
     const [favorite, setFavorite] = useState(false);
+    const navigate = useNavigate();
+
+    const goToRecipe = () => {
+        localStorage.setItem('recipe', JSON.stringify(card));
+        navigate('/recipe');
+
+    }
+
     return (
-        <Card onClick={() => console.log(card.ingredients)}>
+        <Card>
             <CardMedia image=""/>
-            <CardContent>
+            <CardContent onClick={() => goToRecipe()}>
                 <Typography sx={{fontWeight: '600', fontSize: '16px'}}>
                     {card.title}
                 </Typography>
