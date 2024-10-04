@@ -1,3 +1,6 @@
+When searching for recipes give prompts such as: recipes for beef, recipes for lunch, chicken recipes.
+Sometimes it may not give any results because of the bad format of the AI response, so it may require an additional try.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
