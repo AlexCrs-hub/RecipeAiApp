@@ -3,7 +3,7 @@ const text = {
     favs: 'Favorites',
     suggestions: 'Suggested recipes',
     dontLike: 'I don\'t like these',
-    others: "Give me more recipes for that ",
+    others: "Other recipes of what I searched before ",
     prompt:  "as a list using this JSON schema: Recipe = {'title' : string, 'time': string, 'ingredients': string, 'instructions': string}",
 }
 
